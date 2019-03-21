@@ -120,23 +120,4 @@ router.post("/addpost", authMiddleware(),(req,res,next)=>{
 
 
 
-// //authentication middleware
-// function authMiddleware(){
-//     return(req, res, next)=>{
-//         console.log(
-//           `req.session.passport: ${JSON.stringify(req.session.passport)}`
-//         );
-
-//         if(req.isAuthenticated()){ 
-//             return next();
-            
-//         }else{
-//             res.redirect("/users/login");
-//         }
-//     }
-// }
-
-
-
-
-module.exports= router;
+module.exports = router;

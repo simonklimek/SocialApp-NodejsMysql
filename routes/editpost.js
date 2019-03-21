@@ -1,9 +1,10 @@
 const express= require("express");
 const router= express.Router();
 const connection = require("../connection/connection");
+const authMiddleware = require("../routes/authMiddleware");
 
 //require fs to delete image on update
-const fs= require("fs");
+const fs = require("fs");
 
 //multer upload
 const upload= require("../multer/multer");
@@ -133,28 +134,10 @@ router.post("/posts/edit/:id", authMiddleware() ,(req,res, next)=>{
     }
  
     });
-    
-    
-   
 
    
 });
 
-//authentication middleware
-function authMiddleware(){
-    return(req, res, next)=>{
-        console.log(
-          `req.session.passport: ${JSON.stringify(req.session.passport)}`
-        );
-
-        if(req.isAuthenticated()){ 
-            return next();
-            
-        }else{
-            res.redirect("/users/login");
-        }
-    }
-}
 
 
 

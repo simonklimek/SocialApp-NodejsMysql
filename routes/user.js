@@ -1,8 +1,9 @@
 const express= require("express");
 const router= express.Router();
+const authMiddleware = require("../routes/authMiddleware");
 
 // bring in the connection
-const connection= require("../connection/connection");
+const connection = require("../connection/connection");
 
 router.get("/user/profile", authMiddleware(),(req,res)=>{
     //a property called user_id is being passed by passport
@@ -20,7 +21,6 @@ router.get("/user/profile", authMiddleware(),(req,res)=>{
             res.redirect("/login");
         } else{  
            
-                         
                 // send the entire object to manage the data on the view
                 // this is not the same as the user inside passport
                 res.render("./dashboard", {
@@ -30,21 +30,5 @@ router.get("/user/profile", authMiddleware(),(req,res)=>{
     });    
 });
 
-//authentication middleware
-function authMiddleware(){
-    return(req, res, next)=>{
-        console.log(
-          `req.session.passport: ${JSON.stringify(req.session.passport)}`
-        );
 
-        if(req.isAuthenticated()){ 
-            return next();
-            
-        }else{
-            res.redirect("/users/login");
-        }
-    }
-}
-
-
-module.exports = router
+module.exports = router;

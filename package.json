@@ -1,5 +1,5 @@
 {
-  "name": "Social Club Mdx",
+  "name": "socialapp",
   "version": "1.0.0",
   "description": "a simple node app using mysql",
   "main": "index.js",

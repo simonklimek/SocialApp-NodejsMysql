@@ -7,7 +7,6 @@ function authMiddleware(){
         console.log(
           `req.session.passport: ${JSON.stringify(req.session.passport)}`
         );
-
         if(req.isAuthenticated()){ 
             return next();
              

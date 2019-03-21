@@ -2,7 +2,7 @@ const { expect } = require('chai')
 
 const Validator = require('../../routes/validation/Validator')
 
-describe('Validator', () => {
+describe('Form Validator', () => {
 
     it('can apply a rule', () => {
         const rules = {
