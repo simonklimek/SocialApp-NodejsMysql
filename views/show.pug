@@ -1,0 +1,28 @@
+extends layout
+block content
+    .row
+        .col.m4.s12
+            br
+            br
+            img(style="height: 200px", class="show-cover" src="../"+ post.thumb)
+            
+        .col.m8.s12
+            br
+            br
+            if (isAuthenticated)
+                if(x != null || x != undefined)
+                    if (x == post.author)
+                        .row
+                            .col.s6
+                                a(href="/posts/edit/" + post.id) 
+                                    button.btn.waves-effect.blue.waves-light(href="/posts/edit/" + post.id) Edit the post 
+                                        i.material-icons.right create
+                            .col.s6
+                                a(href="/posts/delete/"+ post.id) 
+                                    button.btn.waves-effect.red.waves-light Delete this post 
+                                        i.material-icons.right delete
+                                            
+            h1=post.title
+            p= "by " + user.username    
+            hr
+            p=post.description

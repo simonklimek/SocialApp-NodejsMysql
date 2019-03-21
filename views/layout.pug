@@ -1,0 +1,88 @@
+doctype html
+html
+  head  
+    title Social Club
+    link(rel='stylesheet', href='/css/materialize.css', type="text/css", media="screen,projection")
+    link(rel='stylesheet', href='/css/style.css', type="text/css", media="screen,projection")
+    link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')    
+    meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0")
+  body
+    nav.light-blue.lighten-1(role="navigation")
+        div.nav-wrapper.container
+            a.brand-logo(id="logo-container", href="/")
+              img(src="https://single-page-mdx.herokuapp.com/assets/logo.png", alt="", height="55px")
+            ul.right.hide-on-med-and-down
+              li 
+                  a(href="/") Home
+              li 
+                  a(href="/index") Posts
+              if (!isAuthenticated)
+                li
+                  a(href="/users/register") Register
+                li
+                  a(href="/users/login") Login  
+              else
+                li
+                  a(href="/user/profile") Dashboard
+                li
+                  a(href="/users/logout") LogOut  
+            ul.sidenav(id="nav-mobile")
+              li 
+                a(href="/") Home
+              li 
+                a(href="/index") Posts
+              if (!isAuthenticated)
+                li
+                  a(href="/users/register") Register
+                li
+                  a(href="/users/login") Login  
+              else
+                li
+                  a(href="/user/profile") Dashboard
+                li
+                  a(href="/users/logout") LogOut  
+                li
+                  b
+                    span.red-text.darken-2 You are now signed in
+            a.sidenav-trigger(href="#", data-target="nav-mobile")
+              i.material-icons menu
+    div.parallax-container(style="height: 200px")
+      div.parallax
+        img(src="/images/cover.jpg")
+    div.section.no-pad-bot(id="index-banner")
+      div.container
+        block content
+        br
+        br
+        .fixed-action-btn
+          a.pulse.btn-floating.btn-large.red.modal-trigger.hoverable(href="/addpost")
+            i.large.material-icons add
+        br
+        br
+    footer.page-footer.orange
+      div.container
+        div.row
+          div.col.l6.s12 
+              img(src="https://single-page-mdx.herokuapp.com/assets/logo-white.png", alt="", height="85px")
+          div.col.l3.s12 
+            h6.white-text Status 
+            ul 
+              li 
+                b
+                  if (user != undefined)
+                    a(href="/user/profile") 
+                      span.btn.white.red-text="Signed as " + user.username
+                  else
+                    a(href="/users/login")
+                      span.btn.white.red-text="Not logged in"
+          div.col.l3.s12 
+            img(src="/images/social.png", style="height: 120px")
+      div.footer-copyright 
+        div.container Made by
+          a.orange-text.text-lighten-3(href="http://www.simonsnetwork.co.uk")  Simon's network 
+    script(src="https://code.jquery.com/jquery-2.1.1.min.js")
+    script(src="/js/materialize.js")
+    script(src="/js/init.js")
+    script(src="/js/post-btn.js") 
+    script(src="/js/main.js")    

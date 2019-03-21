@@ -1,0 +1,20 @@
+extends layout
+block content
+      
+    section.container
+     h1 Login
+
+       if err
+            p.error= err
+
+     form.col.s12(action="/users/login" method="POST")
+          .row     
+               div.input-field.col.s12
+                    input.validate(type="text", name="username", placeholder="Username", required)
+
+               div.input-field.col.s12
+                    input.validate(type="password", name="password", placeholder="Password", required)
+               
+               .col.s12
+                    button.btn.waves-effect.orange.waves-light.btn-large.right(type="submit", value="login") Login
+                         i.material-icons.right check

@@ -1,0 +1,31 @@
+{
+  "name": "Social Club Mdx",
+  "version": "1.0.0",
+  "description": "a simple node app using mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/setup.js test/**/*.spec.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql"
+  ],
+  "author": "Szymon Klimek",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-session": "^1.15.6",
+    "multer": "^1.3.0",
+    "mysql": "^2.14.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}

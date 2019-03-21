@@ -1,0 +1,43 @@
+extends layout
+block content
+
+    .row 
+        h3 SEARCH
+        .col.s12 
+            .card-panel.blue-grey.lighten-5.hoverable
+                .row.valign-wrapper 
+                    .input-field.col.m9.s12 
+                        i.material-icons.prefix subdirectory_arrow_right 
+                        input.autocomlete(type="text", id="autocomplete-input")
+                        label(for="autocomplete-input") Autocomplete article search 
+                    .col.m3.s12
+                        button.btn.waves-effect.red.waves-light(type="submit", name="action") Search 
+                            i.material-icons.right search 
+    .row 
+        .col.s12 
+            h3 CHECK OUT THE RECENT POSTS
+            .row 
+                if (posts != undefined)
+                    if (posts.length > 0)
+                        each post in posts
+                            .col.s12.m12 
+                                .card.horizontal.hoverable 
+                                    .card-image 
+                                        img(src=post.thumb, style="height: 200px")
+                                        //- img(src="https://single-page-mdx.herokuapp.com/assets/6.jpg")
+                                    .card-stacked 
+                                        .card-content
+                                            p=post.description
+                                            //- p=article.body
+                                            p
+                                                i=post.author 
+                                        .card-action
+                                           
+                                            a(href="/posts/" + post.id)=post.title
+                                                //- a(href="articles/#{article.slug}")= article.title
+                    else                                           
+                        p No content to display
+                else                                           
+                    p The database is not set
+                
+    

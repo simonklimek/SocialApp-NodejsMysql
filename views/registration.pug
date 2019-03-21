@@ -1,0 +1,52 @@
+extends layout
+block content
+     div.row
+        div.col.s12
+          
+     section.container
+          h1 Register
+
+          if err
+               p.error= err
+          
+          if (message)
+               p.message=message + ", "   
+                    a(href="/addpost") start posting now!
+
+          
+          //- form(action="/users/register" enctype="multipart/form-data" method="POST" )
+          //-      label(for="username") Username
+          //-      input(type="text" name="username" required)
+
+          //-      label(for="email") Email
+          //-      input(type="email" name="email" required)
+
+          //-      label(for="Password") Password
+          //-      input(type="password" name="password" required)
+                         
+          //-      label(for="avatar") your avatar
+          //-      input(type="file" name="avatar" required)
+               
+          //-      input(type="submit" value="Submit")
+
+          form.col.s12(action="/users/register" enctype="multipart/form-data" method="POST")
+               .row     
+                    div.input-field.col.s12
+                         input.validate(type="text", name="username", placeholder="Username", required)
+
+                    div.input-field.col.s12
+                         input.validate(type="email", name="email", placeholder="Email", required)
+                    
+                    div.input-field.col.s12
+                         input.validate(type="password", name="password", placeholder="Password", required)
+                    
+               .row.valign-wrapper
+                    .file-field.input-field.col.m6.s12
+                         .btn.orange.lighten-4
+                              span Attach picture
+                              input(type="file", name="avatar" required)
+                         .file-path-wrapper
+                              input.file-path.validate(type="text")
+                    .col.m6.s12
+                         button.btn.waves-effect.orange.waves-light.btn-large.right(type="submit", value="Submit") Register
+                              i.material-icons.right check

@@ -1,0 +1,36 @@
+extends layout
+block content
+      
+     section.container
+          h1 Add a post
+
+          if err
+               p.error= err 
+          //- form(action="/addpost" enctype="multipart/form-data" method="POST" )
+          //-      label(for="title") title
+          //-      input(type="text" name="title" required)
+          //-      label(for="description") add a description
+          //-      textarea(name="description" required)
+          //-      label(for="cover") add a cover
+          //-      input(type="file" name="cover" required)
+          //-      input(type="submit" value="create post")
+          
+          form.col.s12(action="/addpost" enctype="multipart/form-data" method="POST")
+               .row     
+                    div.input-field.col.s12
+                         input.validate(type="text", name="title", placeholder="Title", required)
+
+                    div.input-field.col.s12
+                         input.validate(type="text", name="description", placeholder="Post content", required)
+                
+               .row.valign-wrapper
+                    .file-field.input-field.col.m6.s12
+                         .btn.orange.lighten-4
+                              span Attach  post cover
+                              input(type="file", name="cover" required)
+                         .file-path-wrapper
+                              input.file-path.validate(type="text")
+                    .col.m6.s12
+                         button.btn.waves-effect.orange.waves-light.btn-large.right(type="submit", value="create post") Create Post
+                              i.material-icons.right check
+

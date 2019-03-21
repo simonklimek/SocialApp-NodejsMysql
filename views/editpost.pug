@@ -1,0 +1,35 @@
+extends layout
+block content
+  
+    h1 Edit post       
+        .row
+            form.col.s12.s12(action="/posts/edit/"+ post.id enctype="multipart/form-data" method="POST" )
+                .col.m8.s12
+                    .row     
+                        div.input-field.col.s12
+                            label(for="title") title
+                            input(type="text", name="title", value=post.title)
+
+                        div.input-field.col.s12
+                            label(for="description") add a description
+                            textarea.materialize-textarea(name="description")=post.description
+                        
+                        div.file-field.input-field.col.s12
+                            .btn.orange.lighten-4
+                                span Attach cover
+                                input(type="file", id="cover", name="cover")
+                            .file-path-wrapper
+                                input.file-path(type="text")
+                                input(type="hidden" name="hidden" value=post.thumb)
+                .col.m4.s12
+                    .row
+                        div.col.s6
+                            h6 current cover
+                            img(src="../../"+ post.thumb, style="height: 120px")  
+                        div.col.s6
+                            h6 new image
+                            img(src="../../images/not_found.jpg", style="height: 120px", id="new-cover")
+
+                        div.col.s12
+                            br
+                            input.btn-large.orange(type="submit", value="Update post")

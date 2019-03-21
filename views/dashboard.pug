@@ -1,0 +1,13 @@
+extends layout
+block content
+    section.container
+        .row
+            div.col.m6.s12
+                br
+                br
+                img.circle.responsive-img(style="height: 200px", class="profile-img" src="../"+ user.avatar)
+            div.col.m6.s12
+                if (user != undefined)
+                    h1=user.username
+                    h4=user.email
+                    p= "UserID: " + user.id
