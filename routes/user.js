@@ -6,10 +6,8 @@ const authMiddleware = require("../routes/authMiddleware");
 const connection = require("../connection/connection");
 
 router.get("/user/profile", authMiddleware(),(req,res)=>{
-    //a property called user_id is being passed by passport
-    //on the user object, which contains the current user id
+    //a property called user_id is being passed by passport on the user object, which contains the current user id
     let $id = req.user.user_id || req.session.passport.user;
-   
     
     //need to find the user data inside the database
     let $userId = "SELECT * from nodemysql.users WHERE id = ?";

@@ -13,8 +13,3 @@ describe('Passport Authentication', () => {
 
     // npm run test
     
-//     // it('is execured', () => {
-
-//     //     expect(Calculator.add(1, 2)).to.equal(3)
-//     // })
-

@@ -20,17 +20,16 @@ router.get("/users/register",(req,res)=>{
 });
 
 
-
 router.post("/users/register", (req,res, next) => {
-    
-    const valid = Validator.validate(req.body, {
-        email: v => /@/.test(v),
-        password: v => v.length > 5 
-    })
+    // mocha test code
+    // const valid = Validator.validate(req.body, {
+    //     email: v => /@/.test(v),
+    //     password: v => v.length > 5 
+    // })
 
-    if (!valid) {
-        return res.sendStatus(422)
-    }
+    // if (!valid) {
+    //     return res.sendStatus(422)
+    // }
 
     
     if(connection.error == null || connection.error == undefined){
@@ -75,7 +74,6 @@ router.post("/users/register", (req,res, next) => {
                    email: $email,
                    password: $password,
                    avatar:$avatar
-
                 }
                
                 // create the query add user

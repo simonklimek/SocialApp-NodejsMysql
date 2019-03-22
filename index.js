@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 var mysql = require('mysql');
 var path = require("path");
+
 const connection = require("./connection/connection");
 
 //routes
@@ -25,19 +26,17 @@ let session = require('express-session');
 let passport= require("passport");
 let LocalStrategy = require("passport-local").Strategy;
 
-
 //bcrypt
 //const bcrypt = require("bcrypt");
 
-
-//static folders that express will use
-//to look for files
+//static folders that express will use to look for files
 //main public folder
 app.use(express.static("./public"));
-//uploads Multer folder
+//post image uploads Multer folder
 app.use(express.static("./uploads"));
-//users avatars
+//users avatars upload folder
 app.use(express.static("./users/avatars"));
+
 //set the view engine to PUG
 app.set("views", path.join(__dirname,"views"));
 app.set("view engine", "pug");
@@ -48,9 +47,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 //express sessions
-//populates a cookie that will hepl passport to keep track of the user
+//populates a cookie that will help passport to keep track of the user
 app.use(session({
-    secret: 'YHprvmaIW1',
+    secret: 'truth',
     resave: false,
     saveUninitialized: false,
     //cookie: { secure: true }
@@ -67,10 +66,7 @@ connection.connect((err)=>{
         console.log("ERROR: " + err);
     }
     // create the database and the table if they dont exist
-    // using multiple statements
-    // need to add  multipleStatements: true in the connection creation
-   
-    //posts and users table
+
     let $sql = "CREATE DATABASE IF NOT EXISTS nodemysql ; CREATE TABLE IF NOT EXISTS nodemysql.users (id INT(6) AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), email VARCHAR(255), avatar VARCHAR(255), password VARCHAR(255)) ; CREATE TABLE IF NOT EXISTS nodemysql.posts (id INT(6) AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), description VARCHAR(255), thumb VARCHAR(255), author VARCHAR(255), FOREIGN KEY (id) REFERENCES nodemysql.users(id))"; 
     let $query = connection.query($sql, (err, result)=>{
         if(err){
@@ -83,8 +79,7 @@ connection.connect((err)=>{
 
 
 // global property / variable for auth users
-// allows us to show or hide things o the front-end based on wether the user is 
-// authenticated or not
+// allows us to show or hide things o the front-end based on wether the user is authenticated or not
 app.use((req, res, next)=>{
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
@@ -107,8 +102,7 @@ app.use("/", logout);
 
 //-------- use the LocalStrategy
 passport.use(new LocalStrategy (
-    //username and password are the name
-    //of the fields in the login form
+    //username and password are the name of the fields in the login form
     function(username, password, done){
         //check if data is being passed
         console.log(`
