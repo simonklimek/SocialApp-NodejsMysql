@@ -11,7 +11,9 @@ const connection = mysql.createConnection({
  
 module.exports = connection;
 
+// Conenction pools will add later
 
+// Pawel comments 
 
 // class Index {
 

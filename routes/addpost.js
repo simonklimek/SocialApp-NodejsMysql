@@ -59,7 +59,6 @@ router.post("/addpost", authMiddleware(),(req,res,next)=>{
                 //store the data in the database now
                 //create the sql for INSERT
                 let $sql="INSERT INTO nodemysql.posts SET ?"; 
-                //create the set
                 
 
                 //if the user just registered the req.user.user_id wont be set

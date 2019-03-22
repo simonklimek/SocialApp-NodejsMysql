@@ -8,15 +8,16 @@ block content
                 .row.valign-wrapper 
                     .input-field.col.m9.s12 
                         i.material-icons.prefix subdirectory_arrow_right 
-                        input.autocomlete(type="text", id="autocomplete-input")
-                        label(for="autocomplete-input") Autocomplete article search 
+                        input(type="text", id="search")
+                        label(for="search") Autocomplete article search 
                     .col.m3.s12
-                        button.btn.waves-effect.red.waves-light(type="submit", name="action") Search 
+                        button.btn.waves-effect.red.waves-light(onclick="search()") Search 
                             i.material-icons.right search 
     .row 
         .col.s12 
             h3 CHECK OUT THE RECENT POSTS
             .row 
+                #pins
                 if (posts != undefined)
                     if (posts.length > 0)
                         each post in posts

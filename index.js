@@ -157,6 +157,23 @@ passport.use(new LocalStrategy (
     }
 ));
 
+app.get('/search',function(req,res){
+    ssn = req.session;
+    // console.log('in');
+    connection.query("SELECT * FROM nodemysql.posts WHERE description LIKE '%" + req.query.search + "%' ORDER BY id DESC", function (err, result, fields) {
+      if (err) throw err;
+      var response = '';
+    //   console.log('in');
+      if(result.length > 0) {
+        for(var i = 0; i < result.length; i++) {
+            
+                                        
+            response += '<div class="col s12 m12 pins"> <div class="card horizontal hoverable"> <div class="card-image"> <img src="' + result[i].thumb +'" style="height: 200px"></div><div class="card-stacked"> <div class="card-content"><p>' + result[i].description +'</p><p><i>3</i></p></div><div class="card-action"><a href="/posts/' + result[i].id + '">' + result[i].title +'</a></div></div></div></div>';
+        }
+        res.end(response);
+      }
+    });
+  });
 
 app.listen(4200, () => {
     console.log("listening for traffic on port 4200");

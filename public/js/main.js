@@ -1,38 +1,18 @@
-
-$(function(){
-   //on load check if the window is determined size
-    if(window.innerWidth < 729 ){
-        $(".menu").next("UL").slideUp();
-    }else{
-        
-        $(".menu").next("UL").slideDown();
-        
-    }
-
-
-
-    //check if the window is determined height and react on resize 
-    $(window).on("resize", ()=>{
-        if(window.innerWidth < 729 ){
-            $(".menu").next("UL").slideUp();
-        }else{
-            $(".menu").next("UL").slideDown();
-        }
-
-    });
+function search() {
+    var search = document.getElementById('search').value;
     
-    $("#cover").on("change", (function(){
-        readURL(this);
-    }));
-
-    $("body").on("click", ".menu", ()=>{
-       $(".menu").next("UL").slideToggle();
-    });
-
-
-
-
-});
+    $.ajax({
+      url: '/search',
+      type: 'GET',
+      data: jQuery.param({ search: search}) ,
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      success: function (response) {
+        $('#pins').html(response);
+      },
+      error: function () {
+          console.log("error");
+      }
+  })};
 
 
 
@@ -48,6 +28,4 @@ function readURL(input) {
         
         reader.readAsDataURL(input.files[0]);
     }
-}
-
-
+};
